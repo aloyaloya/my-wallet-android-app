@@ -14,8 +14,16 @@ import androidx.compose.ui.tooling.preview.Preview
 import ru.egorbugay.mywallet.ui.theme.MywalletTheme
 
 class MainActivity : ComponentActivity() {
+
+    private lateinit var viewModel: MainActivityViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val appComponent = (application as WalletApplication).appComponent
+
+        viewModel = appComponent.viewModelFactory.create(MainActivityViewModel::class.java)
+
         enableEdgeToEdge()
         setContent {
             MywalletTheme {
